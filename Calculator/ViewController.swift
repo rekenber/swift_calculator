@@ -37,7 +37,7 @@ class ViewController: UIViewController
             case "÷": performOperation { $1 / $0 }
             case "+": performOperation { $0 + $1 }
             case "−": performOperation { $1 - $0 }
-            case "√": performOperation { sqrt($0) }
+            case "√": performOperation1 { sqrt($0) }
             default : break 
         }
         
@@ -50,7 +50,7 @@ class ViewController: UIViewController
         }
     }
     
-    private func performOperation(operation:(Double) -> Double) {
+    private func performOperation1(operation:(Double) -> Double) {
         if operandStack.count > 0 {
             displayValue = operation(operandStack.removeLast())
             enter()
