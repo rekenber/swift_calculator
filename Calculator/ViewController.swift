@@ -34,14 +34,14 @@ class ViewController: UIViewController
         if userIsInTheMiddleOfTypingANumber {
             enter()
         }
-        switch operation {
-            case "×": performOperation { $0 * $1 }
-            case "÷": performOperation { $1 / $0 }
-            case "+": performOperation { $0 + $1 }
-            case "−": performOperation { $1 - $0 }
-            case "√": performOperation1 { sqrt($0) }
-            default : break 
-        }
+        if let operation = sender.currentTitle{
+            if let result = brain.performOpertion(operation) as? Double{
+                displayValue = result
+            }
+            else{
+                displayValue = 0
+            }
+        }          
         
     }
     
@@ -67,8 +67,12 @@ class ViewController: UIViewController
     
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
-        operandStack.append(displayValue)
-        print("operandStack = \(operandStack)")
+        if let result = brain.pushOperand(displayValue) as? Double{
+            displayValue = result
+        }
+        else {
+            displayValue = 0
+        }
     }
     
     var displayValue:Double {
