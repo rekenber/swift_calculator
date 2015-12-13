@@ -26,23 +26,21 @@ class ViewController: UIViewController
             display.text = digit
             userIsInTheMiddleOfTypingANumber =  true
         }
-        //print("Digit = \(digit)")
+        print("Digit = \(digit)")
     }
 
     @IBAction func operate(sender: UIButton) {
-        let operation = sender.currentTitle!
         if userIsInTheMiddleOfTypingANumber {
             enter()
         }
         if let operation = sender.currentTitle{
-            if let result = brain.performOpertion(operation) as? Double{
+            if let result = brain.performOpertion(operation) {
                 displayValue = result
             }
-            else{
+            else {
                 displayValue = 0
             }
-        }          
-        
+        }
     }
     
     private func performOperation(operation:(Double,Double)->Double) {
@@ -67,7 +65,7 @@ class ViewController: UIViewController
     
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
-        if let result = brain.pushOperand(displayValue) as? Double{
+        if let result = brain.pushOperand(displayValue){
             displayValue = result
         }
         else {
