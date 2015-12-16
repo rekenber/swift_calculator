@@ -23,8 +23,10 @@ class ViewController: UIViewController
         if userIsInTheMiddleOfTypingANumber {
             display.text = display.text! + digit
         } else {
-            display.text = digit
-            userIsInTheMiddleOfTypingANumber =  true
+            if digit != "0" {
+                display.text = digit
+                userIsInTheMiddleOfTypingANumber =  true
+            }
         }
         print("Digit = \(digit)")
     }
@@ -42,26 +44,6 @@ class ViewController: UIViewController
             }
         }
     }
-    
-    private func performOperation(operation:(Double,Double)->Double) {
-        if operandStack.count >= 2 {
-            displayValue = operation(operandStack.removeLast(),operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    private func performOperation1(operation:(Double) -> Double) {
-        if operandStack.count > 0 {
-            displayValue = operation(operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    func multiply(op1: Double, op2: Double) -> Double {
-        return op1 * op2
-    }
-    
-    var operandStack:Array<Double> = Array<Double>()
     
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
