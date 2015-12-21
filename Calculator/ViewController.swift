@@ -46,7 +46,6 @@ class ViewController: UIViewController
     }
     
     @IBAction func enter() {
-        userIsInTheMiddleOfTypingANumber = false
         if let result = brain.pushOperand(displayValue){
             displayValue = result
         }
